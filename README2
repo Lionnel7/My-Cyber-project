@@ -1,0 +1,82 @@
+# 🛡️ AI Sentinel - SOC Dashboard
+
+> **Projet BTS SIO (Option SISR)**
+> *Détection d'intrusions par Analyse Comportementale (UEBA) et Intelligence Artificielle.*
+
+## 📋 Présentation
+
+**AI Sentinel** est un outil de défense (**Blue Team**) conçu pour agir comme une surcouche intelligente au-dessus des pare-feux traditionnels.
+
+Là où un pare-feu bloque selon des règles fixes (IP, Port), AI Sentinel utilise le **Machine Learning** pour analyser les logs serveurs et détecter les **anomalies statistiques**. Il est capable d'identifier un attaquant qui aurait réussi à s'authentifier mais dont le comportement (heure, origine) diffère des habitudes légitimes des administrateurs.
+
+---
+
+## 🚀 Fonctionnalités Clés
+
+### 1. 🧠 Moteur d'Intelligence Artificielle
+* Utilisation de l'algorithme **Isolation Forest** (Apprentissage Non Supervisé).
+* Détection automatique des "Outliers" (points de données aberrants) sans avoir besoin d'une base de signatures d'attaques.
+* Analyse multi-critères : Corrélation entre **Utilisateur**, **IP**, **Heure** et **Statut**.
+
+### 2. 📊 Tableau de Bord SOC (Streamlit)
+* Interface Web graphique pour la visualisation des alertes.
+* Importation simplifiée des logs (Drag & Drop de fichiers CSV/TXT).
+* Mise en évidence visuelle (**Alerte Rouge**) des lignes critiques nécessitant une investigation immédiate.
+
+### 3. 🔄 Traitement de Données
+* Nettoyage et encodage automatique des données textuelles (Label Encoding) pour traitement par l'IA.
+* Gestion des erreurs de formatage des logs.
+
+---
+
+## 🛠️ Prérequis & Installation
+
+### Système
+* Linux / Windows / WSL
+* Python 3.8+
+
+### Installation des dépendances
+L'outil nécessite plusieurs librairies de Data Science et de Web :
+
+```bash
+pip3 install pandas scikit-learn streamlit jinja2
+
+
+💻 Utilisation
+Lancer le Dashboard : Exécutez la commande suivante dans le terminal :
+
+Bash
+
+python3 -m streamlit run dashboard_ia.py
+Accéder à l'interface : Ouvrez votre navigateur à l'adresse indiquée (généralement http://localhost:8501).
+
+Charger des Logs : Importez un fichier de logs au format CSV (colonnes : user,ip_address,hour,status).
+
+Analyser : Cliquez sur "LANCER L'ANALYSE IA". L'algorithme isolera les comportements suspects en quelques secondes.
+
+🧪 Scénario de Démonstration
+Ce projet a été validé avec le scénario d'incident suivant :
+
+Contexte : Une connexion SSH réussie a lieu à 03h00 du matin.
+
+Problème : Le pare-feu n'a rien bloqué car l'attaquant a utilisé des identifiants valides (volés).
+
+Détection : AI Sentinel a levé une alerte car la combinaison [IP Externe + Heure Tardive] s'écartait statistiquement du modèle comportemental habituel des administrateurs.
+
+🎓 Compétences BTS SIO Validées
+Ce projet permet de valider les compétences du bloc SISR (Solutions d'Infrastructure, Systèmes et Réseaux) :
+
+✅ Superviser le fonctionnement des services : Mise en place d'un outil de monitoring avancé (SOC).
+
+✅ Protéger les services et les données : Détection d'intrusions logiques et comportementales.
+
+✅ Gérer les incidents : Analyse de logs et qualification d'incidents de sécurité.
+
+
+---
+
+### 🌟 Le Conseil de fin
+
+Tu as maintenant un dossier GitHub potentiel très solide avec :
+1.  **AutoRecon** (L'Attaque / Red Team)
+2.  **AI Sentinel** (La Défense / Blue Team)
